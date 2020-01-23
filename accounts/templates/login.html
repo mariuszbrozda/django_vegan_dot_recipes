@@ -1,0 +1,28 @@
+
+{% extends 'base.html' %}
+{% load bootstrap_tags %}
+{% block page_title %}Login Page{% endblock %}
+{% block page_heading %}USER LOGIN{% endblock %}
+{% block content_site %}
+
+<!-------------------------------------------  USER LOGIN  -->
+<section class='container'>
+    <div class='row'>
+        <div class='col-sm-4  col-lg-4'></div>
+        <div class='form-group col-sm-4  col-lg-4 log_in_box'>
+            <h2> LOGIN </h2>
+            <form  method="POST" class=''>
+                 {% csrf_token %} {{ login_form | as_bootstrap}}
+                <button class='mb-2 btn-submit' type="submit" id='login-btn' name='login' > LOG IN !</button><br>
+            </form>
+            <h5 class='reset_link'><a href="{% url 'password_reset' %}">Reset Your Password</a></h5>
+        </div>
+        <div class=' col-sm-4  col-lg-4'></div>
+    </div>
+</section> 
+{% include "footer.html" %}
+{% endblock %}
+
+
+
+ 
