@@ -1,0 +1,90 @@
+
+
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+{% load static from staticfiles %}
+
+
+{% block head_js %}
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+    //<![CDATA[
+        Stripe.publishableKey = '{{ publishable }}';
+    //]]>
+</script>
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+{% endblock %}
+
+{% block content_site %}
+<div class='col 12 header_main_page'>
+    <legend> Checkout </legend>
+</div>
+
+ <div class='container recipes py-5 sm-light '>
+                    <div class="row">
+                        {% for item in cart_items %}
+                        <div class="card-wrapper col-md-4 col-lg-4 col-sm-12">
+                            <div class="card mb-4 box-shadow">
+                                <div class='card_header'>
+                                    {{ item.product.name }}
+                                </div>
+                                
+                                <object width='100%' height='270px' data='{{ MEDIA_URL }}{{ item.product.image }}' >
+                                    <img class='' width='100%' height='270px'  src="https://bilety.teatrroma.pl/images/layout/no-image.png">
+                                </object>
+                                
+                                <div class="card-body">
+                                    <h4 class="card-text">{{ item.product.description }}</h4>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <form method="post" action="" class="">
+                                            {% csrf_token %}
+                                            <div class="btn-group">
+                                                <div class="pull-left badge_price">Price: {{ product.price }} &euro;</div>    
+                                                <div class="pull-left badge_views" type="submit">{{product.views}} Views</div>
+                                                <div class='pull-right'>
+                                                    <a href="{% url 'delete_recipe_from_checkout' item.product.id %}"  class="btn btn-md btn btn-danger" type="submit"><i class="fas fa-times"></i></a> 
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   {% endfor %}
+                </div>
+            </div>
+
+
+<section class='container'>
+    <div class='row'>
+        <div class='col-xs-0 col-sm-0 col-md-1'></div>
+        <div class='col-xs-12 col-sm-12 col-md-10 display panel panel-default'>
+            <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
+            <div class='col-lg-12 header_main_page'>
+                <legend>Payment Details</legend>
+                <legend>Total</legend>
+                <legend><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</legend>
+            </div>
+            <div id="credit-card-errors" style="display: none;">
+                <div id="alert-message block-message error" id="stripe-error-message"></div>
+            </div>
+        
+            <div class="form-group col-md-6">
+                {{ order_form.as_p }}
+            </div>
+        
+            <div class="form-group col-md-6">
+                {{ payment_form.as_p }}
+            </div>
+        
+            {% csrf_token %}
+            <div class="form-group col-md-12 center">
+                <input class=" btn btn-submit" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
+            </div>
+        </form>    
+        </div>
+        <div class='col-xs-0 col-sm-0 col-md-1'></div>
+    </div>
+</section>
+{% include "footer.html" %}
+{% endblock %}
