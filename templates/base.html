@@ -1,0 +1,203 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vegan dot </title>
+    
+    {% load i18n static %}
+    {% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+    <html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+    <head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "css/main.css" %}{% endblock %}">
+    {% block extrastyle %}{% endblock %}
+    {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}">{% endif %}
+    {% block extrahead %}{% endblock %}
+    {% block responsive %}
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive.css" %}">
+        {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive_rtl.css" %}">{% endif %}
+    {% endblock %}
+    {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
+    </head>
+    {% load i18n %}
+
+    
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet" media="screen"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% block head_js %}
+    {% endblock head_js %}
+</head>
+<body>
+ <!----------------------------------------------------HEADER ON MOBILES-->
+<header>
+    <nav class="navbar fixed-top py-4">
+        <div  class="nav-wrapper">
+            <div class='brand-logo'>
+               <img  src='/static/img/vd_logo.jpg'><a href="{% url 'home_main' %}"></img><a/>
+            </div>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="side-nav" id="mobile-demo">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                     <a class="nav-link-hamburger" href="{% url 'user_profile' %}"><i class="fa fa-user"></i> My profile</a>
+                 </li>
+                 <li class="nav-item">
+                   
+                    <a href="{% url 'view_cart' %}" class="nav-link-hamburger">
+                        <i class="fa fa-shopping-cart"></i> Cart
+                        {% if product_count > 0 %}
+                        {{ product_count }}
+                        {% endif %}
+                    </a>
+                </li>
+                <li class="nav-item-hamburger">
+                    <a class="nav-link-hamburger" href="{% url 'home_main' %}"><i class="fa fa-home"></i> Home</a>
+                </li>
+                <li class="nav-item-hamburger">
+                    <a class="nav-link-hamburger" href="{% url 'starters' %}"><i class="fas fa-seedling"></i> Starters</a>
+                </li>
+                <li class="nav-item-hamburger">
+                    <a class="nav-link-hamburger" href="{% url 'main_courses' %}"><i class="fas fa-utensils"></i> Main courses</a>
+                </li>
+                <li class="nav-item-hamburger">
+                    <a class="nav-link-hamburger" href="{% url 'desers' %}"><i class="fas fa-apple-alt"></i> Desers</a>
+                </li>
+                <li class="nav-item-hamburger">
+                    <a class="nav-link-hamburger" href="{% url 'smoothies' %}"><i class="fas fa-blender-phone"></i> Smoothies</a>
+                </li>
+                <li class="nav-item-hamburger">
+                    <a class="nav-link-hamburger" href="{% url 'juices' %}"><i class="fa fa-glass"></i> Juices</a>
+                </li>
+                <li class="nav-item-hamburger">
+                    <a class="nav-link-hamburger" href="{% url 'add_recipe' %}"><i class="fas fa-upload"></i> Upload recipe</a>
+                </li>
+                <li class="nav-item-hamburger">
+                    <a href="{% url 'logout' %}">Log out</a>
+                </li>
+                {%  else %}
+                    <li class="nav-item-hamburger">
+                        <a href="{% url 'view_cart' %}" class="nav-link-hamburger">
+                            <i class="fa fa-shopping-cart"></i> Cart
+                            {% if product_count > 0 %}
+                            <label class=""><span class="new badge">4</span>{{ product_count }}</label>
+                            {% endif %}
+                        </a>
+                    </li>
+                    <li class="nav-item-hamburger">
+                        <a class="nav-link-hamburger" href="{% url 'registration' %}"> Register</a>
+                    </li>
+                    <li class="nav-item-hamburger">
+                        <a class="nav-link-hamburger" href="{% url 'login' %}"> Log In</a>
+                    </li>
+                {% endif %}
+            </ul> 
+        </div>
+    </nav>
+</header>
+
+<!----------------------------------------------------HEADER ON LARE SCREENS-->
+<section class='nav-tabs-wrapper'>
+    <ul  id="nav-mobile" class="nav nav-tabs hide-on-med-and-down">
+        {% if user.is_authenticated %}
+         <li class="nav-item">
+             <a class="nav-link" href="{% url 'home_main' %}"><i class="fa fa-home"></i> Home</a>
+         </li>
+         <li class="nav-item-hamburger">
+             <a class="nav-link" href="{% url 'starters' %}"><i class="fas fa-seedling"></i> Starters</a>
+         </li>
+         <li class="nav-item-hamburger">
+             <a class="nav-link" href="{% url 'main_courses' %}"><i class="fas fa-utensils"></i> Main courses</a>
+         </li>
+         <li class="nav-item-hamburger">
+             <a class="nav-link" href="{% url 'desers' %}"><i class="fas fa-apple-alt"></i> Desers</a>
+         </li>
+         <li class="nav-item-hamburger">
+             <a class="nav-link" href="{% url 'smoothies' %}"><i class="fas fa-blender-phone"></i> Smoothies</a>
+         </li>
+         <li class="nav-item-hamburger">
+             <a class="nav-link" href="{% url 'juices' %}"><i class="fa fa-glass"></i> Juices</a>
+         </li>
+         <li class="nav-item ">
+             <a class="nav-link p_user" href="{% url 'add_recipe' %}"><i class="fas fa-upload"></i> Upload recipe</a>
+         </li>
+         <li class="nav-item">
+             <a class="nav-link " href="{% url 'user_profile' %}"><i class="fa fa-user"></i> My profile </a>
+         </li>
+         <li class="nav-item">
+            <a href="{% url 'view_cart' %}" class="nav-link">
+                <i class="fa fa-shopping-cart"></i> Cart
+                {% if product_count > 0 %}
+                <label class="badge badge-warning">{{ product_count }}</label>
+                {% endif %}
+            </a>
+        </li>
+         <li class="nav-item">
+             <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Log out</a>
+         </li>
+         {%  else %}
+            <li class="nav-item pull-right">
+                <a href="{% url 'view_cart' %}" class="nav-link">
+                    <i class="fa fa-shopping-cart"></i>Cart
+                    {% if product_count > 0 %}
+                    <label class=""><span class="new badge">4</span>{{ product_count }}</label>
+                    {% endif %}
+                </a>
+            </li>
+             <li class="nav-item pull-right">
+                 <a class="nav-link" href="{% url 'registration' %}"><i class="fa fa-user-plus"></i> Register</a>
+            </li>
+            <li class="nav-item pull-right margin-right">
+                <a class="nav-link" href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Log In</a>
+            </li>
+         {% endif %}
+    </ul>
+</section>
+
+
+    {% if messages %}
+        <div class="alert alert-success mt-5">
+            <div class="messages center">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    
+    <!-- CONTENT -->
+    <div class="container">
+        {% block content_site %}
+        {% endblock %}
+    </div>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.collapsible').collapsible();
+            $('select').material_select();
+            $(".button-collapse").sideNav();
+        });
+    </script>
+</body>
+</html>
