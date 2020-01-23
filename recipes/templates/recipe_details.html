@@ -1,0 +1,133 @@
+{% extends 'base.html' %} {% block content_site %}
+
+
+<!---------------------------------------------------ECIPE CONTENT -->
+<section class='container recipe_content_wrapper'>
+    <div class="row">
+        
+<!--------------------------------------------------RECIPES DETAILS -->
+        <div class='col-md-5 recipe_details'>
+            <div class='recipe_name col-md-12 col-sm-12 col-lg-12'>
+                <h1 >{{recipe.recipe_name}}</h1>
+                <p> Category : {{recipe.recipe_category_name}}</p>
+                <p> Cousine : {{recipe.cousine}}</p>
+                <p> Preparation time : {{recipe.preparation_time}}</p>
+                <p> Views : {{recipe.views}}</p>
+                <p> Uploaded by : {{recipe.uploaded_by}}</p>
+            </div>
+
+<!------------------------------------------------------RECIPES PHOTO  mobile -->
+          
+            <div class='row'>
+                {% if post.image %}
+                <img class="img-blogpost" src="{{ MEDIA_URL }}{{ recipe.image }}">
+                {% endif %}
+            </div>
+            
+<!------------------------------------------------------RECIPES DESCRIPTION -->
+            <div class='row'>
+                <div class='recipe_description col-md-12'>
+                    <h3><span class="label label-default">Recipe Description</span></h3>
+                    <p class='descripton_p'>{{recipe.description}} </p>
+                </div>
+            </div> 
+        
+<!--------  --------------------------------------------RECIPES INGREDIENTS -->
+            <div class='row'>
+                <div class='recipe_ingredients col-md-12'>
+                    <h3><span class="label label-default">Ingredients</span></h3>
+                    <div class="row recipe_ingredients">
+                        <div class=" recipe_ingredients col s12">
+                            <div class=" col s12" >
+                                <table class='align-center' id='ingredients' name="ingredients[]">
+                                    <tr>
+                                        <th class='align-center'>Ingredients</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{recipe.ingredient_1}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{recipe.ingredient_2}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{recipe.ingredient_3}}</td>
+                                    </tr>
+                                        <td>{{recipe.ingredient_4}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{recipe.ingredient_5}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{recipe.ingredient_6}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{recipe.ingredient_7}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{recipe.ingredient_8}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{recipe.ingredient_9}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{recipe.ingredient_10}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            
+<!------    --  --------------------------------------------RECIPES PREPARATION -->
+            <div class='row'>
+                <div class='recipe_preparation col-md-12'>
+                    <h3><span class="label label-default">Recipe preparation</span></h3>
+                    <p class='descripton_p'>
+                    {{recipe.preparation}}
+                    </p>
+                </div>
+            </div>  
+            
+<!------    --  --------------------------------------------HOW TO SERVE -->
+            <div class='row'>
+                <div class='recipe_how_to_serve col-md-12'>
+                    <h3><span class="label label-default">How to serve</span></h3>
+                    <p class='descripton_p'> {{recipe.recipe_how_to_serve}}</p>
+                </div>
+            </div>
+        </div>
+
+
+<!------------------------------------------------------RECIPES PHOTO -->
+        <div class='col-md-7 add_recipe_photo_wrapper'>
+            <div class='row'>
+                <object class='recipe_photo_screens_lg' data="{{ MEDIA_URL }}{{ recipe.image }}" width='100%' height='auto'>
+                    <img  src="https://bilety.teatrroma.pl/images/layout/no-image.png"  width='100%' height='auto' >
+                </object>
+            </div>
+            
+
+<!------------------------------------------------------BON APETITE TEXT -->
+
+            <div class='row bon_apetite'>
+                <div class='col-md-6 col-sm-6'></div>
+                <h3 class='col-md-5 col-sm-5'> Bon Apetite !</h3>
+                <div class='col-md-1 col-sm-1'></div>
+            </div>
+        </div>
+    </div>
+
+<!------------------------------------------------------ BACK BUTTON -->  
+    <div class='row'>
+        <div class='col s4 col m5 col l5'></div>
+        <button type="button" onclick="window.history.go(-1)" class="add_recipe_btn btn btn-sm btn-outline-secondary col s4 col m2 col l2">Back</button>
+        <div class='col s3 col m5 col l5'></div>
+    </div>
+</section>
+
+
+{% include "footer.html" %}
+{% endblock %}
+
+

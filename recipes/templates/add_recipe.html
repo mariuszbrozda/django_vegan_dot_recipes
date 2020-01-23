@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {
+{% load bootstrap_tags %}
+{% load static from staticfiles %}
+
+{% block content_site %}
+ 
+ 
+<!----------------------------------------------------HEADER-->
+<div class='col-md-12 col-lg-12 col-sm-12 header_main_page'>
+    <legend>Add your recipe {{user}}</legend>
+</div>
+
+<!----------------------------------------------------RECIPE CATEGORY-->
+<section class='container py-5 sm-light'>
+    <div class="row">
+        <div class='col-md-3 col-lg-3 col-xs-0 col-sm-0'></div>
+        <div class='col-md-6 col-lg-6 col-sm-12 col-xs-12 '>
+            <form class='' role="form" method="POST" id="add_recipe_form" enctype="multipart/form-data" action="">
+                
+                <div class="add_form ">
+                    {{add_recipe_form.as_p }}
+                </div>
+                {% csrf_token %}
+                <input class=" btn btn-submit" action="{% url 'add_recipe' %}" id="submit_btn" name="commit" type="submit" value="Add recipe">
+                
+            </form>
+        </div>
+        <div class='col-md-3 col-lg-3 col-xs-0'></div>
+    </div>
+</section>
+{% include "footer.html" %}
+{% endblock %}
