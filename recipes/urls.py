@@ -14,7 +14,7 @@ urlpatterns = [
     
     url(r'^(?P<id>\d+)/edit/$', edit_recipe, name='edit_recipe'),
     
-    url(r'^(?P<pk>\d+)/$', recipe_detail, name='recipe_detail'),
+    url(r'^(?P<pk>\d+)', recipe_detail, name='recipe_detail'),
     url(r'^delete_recipe(?P<pk>\d+)', delete_recipe, name='delete_recipe'),
     url(r'^(?P<pk>\d+)', delete_recipe_from_purchases, name='delete_recipe_from_purchases'),
 ]

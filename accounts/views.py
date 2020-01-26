@@ -81,11 +81,6 @@ def user_profile(request, pk=None):
     
     user = User.objects.get(username=request.user)
     user_email = user.email
-    # user_image = profile.user_image
-    # user_city = profile.user_city
-    
-    
-    
     uploaded_by_me = Product.objects.filter(uploaded_by=user)
     
     purchased = Purchases.objects.filter(user=user)

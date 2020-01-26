@@ -109,7 +109,7 @@ def edit_recipe(request, id):
         if add_recipe_form.is_valid():
             
             add_recipe_form.save()
-            return redirect(recipe_detail)
+            return redirect(recipe_detail, pk=id)
     else:
         add_recipe_form = Add_recipe_form(instance=product_to_edit)
         
