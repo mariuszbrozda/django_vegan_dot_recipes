@@ -53,8 +53,10 @@
 <header>
     <nav class="navbar fixed-top py-4">
         <div  class="nav-wrapper">
-            <div class='brand-logo'>
-               <img  src='/static/img/vd_logo.jpg'><a href="{% url 'home_main' %}"></img><a/>
+            <div>
+               <a class='brand-logo' href="{% url 'home_main' %}">
+                   <img  src='/static/img/vd_logo.jpg'></img>
+               </a>
             </div>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="side-nav" id="mobile-demo" >

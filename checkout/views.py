@@ -17,7 +17,12 @@ import stripe
 stripe.api_key = settings.STRIPE_SECRET
 
 
+## ---------------checkout----- 
 
+# Function for checkout. Proceses payments after payment form is valid.
+# redirect user to user profile after payments.
+# Looping through cart items and add recipes to purchases after pay.
+# after that user will see seucces messag 
 
 @login_required()
 def checkout(request):

@@ -4,116 +4,117 @@
 {% block page_heading %}{{ user }}'s Profile{% endblock %} 
 {% block content_site %}
 
+<!-- --------------------------------------USER PROFILE CONTENT -->
 
-<div class='col-lg-12 header_main_page'>
-    <legend> MY PROFILE </legend>
-</div>
+<section class='col-lg-12 header_main_page'>
+    <h5><legend> MY PROFILE</legend></h5>
+</section>
 
-        <!-- Profile widget -->
-        
-        <div class="container">
-            <div class='row'>
-                <div class="bg-light shadow  ">
-            
-                <div class=" align-items-end">
-                    <div class="user_profile_details">
-                        <h4 class="mt-0 mb-0 ">Welcome <strong>{{user}}</strong> </h4>
-                        <h4  class="small mb-4"><i class="fas fa-envelope"></i> {{user_email }}</h4 >
+<!-- --------------------------------------USER PROFILE -->
+<section class="container">
+    <div class='row'>
+        <div class="bg-light shadow  ">
+            <div class=" align-items-end">
+                <div class="user_profile_details">
+                    <h4 class="mt-0 mb-0 ">Welcome <strong>{{user}}</strong> </h4>
+                    <h4  class="small mb-4"><i class="fas fa-envelope"></i> {{user_email }}</h4 >
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ------------------------------------------------------SEARCH -->
+<section class="container">
+    <div class='row'>
+        <div class=" col-md-4 "></div>
+        <div class="display col-md-4 search_profile">
+            <form action="{% url 'search' %}" method="get">
+                <input type="text" name="q">
+                <button type="search">Search</button>
+            </form>
+        </div>
+        <div class=" col-md-4 "></div>
+    </div>   
+</section>
+
+<!-- --------------------------------------RECIPES UPLOADED BY ME  -->
+<section class="py-4">
+    <div class='col-lg-12'>
+        <h5><legend class="center mb-3">RECIPES UPLOADED BY ME </legend></h5>
+    </div>
+    <div class='container recipes'>
+        <div class="row">
+            {% for product in uploaded_by_me %}
+            <div class="card-wrapper col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                <div class="card mb-4 box-shadow">
+                    <div class='card_header'>
+                        {{ product.name }}
                     </div>
-                </div>
-            
-        </div>
-            </div>
-            <div class='row'>
-                <div class=" col-md-4 "></div>
-                <div class="display col-md-4 search_profile">
-                    <form action="{% url 'search' %}" method="get">
-                        <input type="text" name="q">
-                        <button type="search">Search</button>
-                    </form>
-                </div>
-                <div class=" col-md-4 "></div>
-            </div>   
-        </div>
-        <div class="py-4">
-            <div class='col-lg-12'>
-                <legend class="center mb-3">RECIPES UPLOADED BY ME </legend>
-            </div>
-            <div class='container recipes'>
-                <div class="row">
-                    {% for product in uploaded_by_me %}
-                    <div class="card-wrapper col-md-4 col-lg-4 col-sm-12 col-xs-12">
-                        <div class="card mb-4 box-shadow">
-                            <div class='card_header'>
-                                {{ product.name }}
-                            </div>
-                            <object width='100%' height='270px' data='{{ MEDIA_URL }}{{ product.image }}' >
-                                <img class='' width='100%' height='270px'  src="https://bilety.teatrroma.pl/images/layout/no-image.png">
-                            </object>
-                            <div class="card-body">
-                                <h4 class="card-text">{{ product.description }}</h4>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <form method="post" action="" class="">
-                                        {% csrf_token %}
-                                       <div class="btn-group">
-                                            <div class="pull-left badge_views" type="submit">{{product.views}} Views</div>
-                                            <div class='pull-right'>
-                                                <a href="{% url 'edit_recipe' product.id %}" class="btn btn-submit btn-view" type="submit">Edit</a>
-                                            
-                                                <a href="{% url 'recipe_detail' product.id %}" class="btn btn-submit btn-view" type="submit">View</a>
-                                                <a href="{% url 'delete_recipe' product.id %}" class="btn btn-md btn btn-danger" type="submit"><i class="fas fa-times"></i></a> 
-                                            </div>
-                                        </div>
-                                    </form>
+                    <object width='100%' height='270px' data='{{ MEDIA_URL }}{{ product.image }}' >
+                        <img alt='recipe picture' class='' width='100%' height='270px'  src="https://bilety.teatrroma.pl/images/layout/no-image.png">
+                    </object>
+                    <div class="card-body">
+                        <h4 class="card-text">{{ product.description }}</h4>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <form method="post" action="" class="">
+                                {% csrf_token %}
+                               <div class="btn-group">
+                                    <div class="pull-left badge_views">{{product.views}} Views</div>
+                                    <div class='pull-right'>
+                                        <a href="{% url 'edit_recipe' product.id %}" class="btn btn-submit btn-view" type="submit">Edit</a>
+                                    
+                                        <a href="{% url 'recipe_detail' product.id %}" class="btn btn-submit btn-view" type="submit">View</a>
+                                        <a href="{% url 'delete_recipe' product.id %}" class="btn btn-md btn btn-danger" type="submit"><i class="fas fa-times"></i></a> 
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
-                   {% endfor %}
                 </div>
             </div>
+           {% endfor %}
         </div>
-        <div class="py-4">
-            <div class='col-lg-12'>
-                <legend class="center mb-3">MY PURCHASES </legend>
-            </div>
-            <div class='container recipes py-5 sm-light '>
-                <div class="row">
-                    {% for product in purchased %}
-                    <div class="card-wrapper col-md-4 col-xs-12 col-lg-4 col-sm-12">
-                        <div class="card mb-4 box-shadow">
-                            <div class='card_header'>
-                                {{ product.product.name }}
-                            </div>
-                            <object width='100%' height='270px' data='{{ MEDIA_URL }}{{ product.product.image }}' >
-                                <img class='' width='100%' height='270px'  src="https://bilety.teatrroma.pl/images/layout/no-image.png">
-                            </object>
-                            
-                            <div class="card-body">
-                                <h4 class="card-text">{{ product.product.description }}</h4>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <form method="post" action="" class="">
-                                        {% csrf_token %}
-                                        <div class="btn-group">
-                                            <div class="pull-left badge_views" type="submit">{{product.views}} Views</div>
-                                            <div class='pull-right'>
-                                                <a action="{% url 'edit_recipe' product.id %}" class="btn btn-submit btn-view" type="submit">Edit</a>
-                                            
-                                                <a href="{% url 'recipe_detail' product.id %}" class="btn btn-submit btn-view" type="submit">View</a>
-                                                
-                                                <a href="{% url 'delete_recipe_from_purchases' product.id %}" class="btn btn-md btn btn-danger" type="submit"><i class="fas fa-times"></i></a> 
-                                            </div>
-                                        </div>
-                                    </form>
+    </div>
+</section>
+
+<!-- --------------------------------------MY PURCHASES  --> 
+<section class="py-4">
+    <div class='col-lg-12'>
+        <h5><legend class="center mb-3">MY PURCHASES </legend></h5>
+    </div>
+    <div class='container recipes py-5 sm-light '>
+        <div class="row">
+            {% for product in purchased %}
+            <div class="card-wrapper col-md-4 col-xs-12 col-lg-4 col-sm-12">
+                <div class="card mb-4 box-shadow">
+                    <div class='card_header'>
+                        {{ product.product.name }}
+                    </div>
+                    <object width='100%' height='270px' data='{{ MEDIA_URL }}{{ product.product.image }}' >
+                        <img alt='recipe picture' class='' width='100%' height='270px'  src="https://bilety.teatrroma.pl/images/layout/no-image.png">
+                    </object>
+                    
+                    <div class="card-body">
+                        <h4 class="card-text">{{ product.product.description }}</h4>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <form method="post" action="" class="">
+                                {% csrf_token %}
+                                <div class="btn-group">
+                                    <div class="pull-left badge_views" type="submit">{{ product.product.views}} Views</div>
+                                    <div class='pull-right'>
+                                        <a href="{% url 'recipe_detail' product.product.id %}" class="btn btn-submit btn-view" type="submit">View</a>
+                                        <a href="{% url 'delete_recipe_from_purchases' product.id %}" class="btn btn-md btn btn-danger" ><i class="fas fa-times"></i></a> 
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
-                   {% endfor %}
                 </div>
             </div>
+           {% endfor %}
         </div>
-        <!-- End profile widget -->
-    
+    </div>
+</section>
 {% include "footer.html" %}
 {% endblock %}

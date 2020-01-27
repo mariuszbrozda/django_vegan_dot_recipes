@@ -19,6 +19,11 @@ def home_accounts(request):
     return render(request,  'index.html' , {"products": products})
     
     
+## ---------------LOG OUT ----- 
+
+# Function for logout user from website
+# after that user will see seucces message
+    
 @login_required
 def logout(request):
     """Log the user out"""
@@ -26,7 +31,10 @@ def logout(request):
     messages.success(request, "You have successfully been logged out")
     return redirect(reverse('home_main'))
 
+## ---------------LOG in ----- 
 
+# Function for login user to website
+# after that user will see seucces message
 
 def login(request):
     """Return a login page"""
@@ -49,7 +57,11 @@ def login(request):
         login_form = UserLoginForm()
     return render(request, 'login.html', {'login_form': login_form})
     
-    
+## ---------------registration ----- 
+
+# Function for registration and create user account with password username and email
+# after that user will see seucces messag   
+
 def registration(request):
     """Render the registration page"""
     if request.user.is_authenticated:
@@ -66,31 +78,37 @@ def registration(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully registered")
+                return redirect(reverse('home_main'))
             else:
                 messages.error(request, "Unable to register your account at this time")
     else:
         registration_form = UserRegistrationForm()
     return render(request, 'registration.html', {
         "registration_form": registration_form})
-    
+
+
+## ---------------User Profile view ----- 
+
+# Function for user profile, presents user account with  username and email
+# added and purchased recipes
     
 def user_profile(request, pk=None):
     """The user's profile page"""
     recipe = get_object_or_404(Product, pk=pk) if pk else None
-   
     
     user = User.objects.get(username=request.user)
     user_email = user.email
     uploaded_by_me = Product.objects.filter(uploaded_by=user)
-    
+   
     purchased = Purchases.objects.filter(user=user)
     
     return render(request, 'profile.html', {"user": user, "user_email": user_email,
-                 'uploaded_by_me':uploaded_by_me, 'purchased': purchased,
+                 'uploaded_by_me':uploaded_by_me, 'purchased': purchased, 
                 
                  })   
     
     
 
+    
   
   

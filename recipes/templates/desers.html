@@ -5,11 +5,12 @@
 {% block content_site %}
 
 <!---------------------------------------------------HEADER ALL RECIPES/ MAIN PAGE -->
-<div class='col 12 header_main_page'>
-    <legend> DESERS </legend>
-</div>
+<section class='col 12 header_main_page'>
+    <h5><legend> DESERS </legend></h5>
+</section>
 
-<div class="container">
+<!-- ---------------------------------------------------------SEARCH -->
+<section class="container">
     <div class='row'>
         <div class=" col-md-4 "></div>
         <div class="display col-md-4 ">
@@ -20,9 +21,9 @@
         </div>
         <div class=" col-md-4 "></div>
     </div>
-</div>
-<!---------------------------------------------------CONTENT MAIN PAGE -->
-<div class='container recipes py-5 sm-light '>
+</section>
+<!---------------------------------------------------CONTENT DESERS RECIPES -->
+<section class='container recipes py-5 sm-light '>
     <div class="row">
        {% for product in desers_recipes %}
         <div class="card-wrapper col-md-4 col-lg-4 col-sm-12">
@@ -30,11 +31,9 @@
                 <div class='card_header'>
                     {{ product.name }}
                 </div>
-                
                 <object width='100%' height='270px' data='{{ MEDIA_URL }}{{ product.image }}' >
-                    <img class='' width='100%' height='270px'  src="https://bilety.teatrroma.pl/images/layout/no-image.png">
+                    <img alt='recipe picture' class='' width='100%' height='270px'  src="https://bilety.teatrroma.pl/images/layout/no-image.png">
                 </object>
-                
                 <div class="card-body">
                     <h4 class="card-text">{{ product.description }}</h4>
                     <div class="d-flex justify-content-between align-items-center">
@@ -52,6 +51,6 @@
         </div>
        {% endfor %}
     </div>
-</div>
+</section>
 {% include "footer.html" %}
 {% endblock %}

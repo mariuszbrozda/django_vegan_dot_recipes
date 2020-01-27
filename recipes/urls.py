@@ -12,9 +12,10 @@ urlpatterns = [
     url(r'^smoothies', smoothies, name='smoothies'),
     url(r'^juices', juices, name='juices'),
     
-    url(r'^(?P<id>\d+)/edit/$', edit_recipe, name='edit_recipe'),
+    url(r'^(?P<id>\d+)/edit/', edit_recipe, name='edit_recipe'),
     
-    url(r'^(?P<pk>\d+)', recipe_detail, name='recipe_detail'),
+    url(r'^recipe_detail/(?P<pk>\d+)', recipe_detail, name='recipe_detail'),
+
     url(r'^delete_recipe(?P<pk>\d+)', delete_recipe, name='delete_recipe'),
-    url(r'^(?P<pk>\d+)', delete_recipe_from_purchases, name='delete_recipe_from_purchases'),
-]
+    url(r'^delete_recipe_from_purchases/(?P<pk>\d+)/$', delete_recipe_from_purchases, name='delete_recipe_from_purchases'),
+]  

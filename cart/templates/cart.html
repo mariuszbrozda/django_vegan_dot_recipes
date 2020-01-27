@@ -4,10 +4,13 @@
 
 {% block content_site %}
 
-<!---------------------------------------------------HEADER ALL RECIPES/ MAIN PAGE -->
+
+<!---------------------------------------------------CART CONTENT-->
 <div class='col 12 header_main_page'>
-    <legend> Cart </legend>
+    <h5><legend> Cart </legend></h5>
 </div>
+
+<!-- ---------------------------------------------------SEARCH -->
 <section class="container-fluid">
     <div class='row'>
         <div class=" col-md-4 col-xs-0 col-sm-0"></div>
@@ -20,8 +23,9 @@
         <div class=" col-md-4 col-xs-0 col-sm-0"></div>
     </div>
 </section>
-<!---------------------------------------------------CONTENT MAIN PAGE -->
-<div class='container recipes py-5 sm-light '>
+
+<!---------------------------------------------------RECIPES IN CART -->
+<section class='container recipes py-5 sm-light '>
     <div class="row">
         {% for item in cart_items %}
         <div class="card-wrapper col-md-4 col-lg-4 col-sm-12">
@@ -30,7 +34,7 @@
                     {{ item.product.name }}
                 </div>
                 <object width='100%' height='270px' data='{{ MEDIA_URL }}{{ item.product.image }}'>
-                    <img class='' width='100%' height='270px'  src="https://bilety.teatrroma.pl/images/layout/no-image.png">
+                    <img alt='recipe picture' class='' width='100%' height='270px'  src="https://bilety.teatrroma.pl/images/layout/no-image.png">
                 </object>
                 <div class="card-body">
                     <h4 class="card-text">{{ item.product.description }}</h4>
@@ -40,8 +44,9 @@
                             <div class="btn-group">
                                 <div class="pull-left badge_price">Price: {{ product.price }} &euro;</div>
                                 <div class="pull-left badge_views" type="submit">{{product.views}} Views</div>
-                                <div class="pull-right ">
-                                    <a class="btn btn-md btn btn-danger" href="{% url 'delete_recipe_from_cart' item.product.id %}" type="submit"><i class="fas fa-times"></i></a>    
+                                  
+                                <div class="pull-right btn-del-cart ">
+                                    <a class="btn btn-md btn btn-danger " href="{% url 'delete_recipe_from_cart' item.product.id %}" type="submit"><i class="fas fa-times"></i></a>  
                                 </div>
                             </div>
                         </form>
@@ -51,8 +56,9 @@
         </div>
         {% endfor %}
     </div>
-</div>
+</section>
 
+<!---------------------------------------------------CHECKOUT BTN -->
 <section class="container">
     <div class="row">
         <div class='center'>
@@ -62,6 +68,5 @@
         </div>
     </div>
 </section>
-
 {% include "footer.html" %}
 {% endblock %}

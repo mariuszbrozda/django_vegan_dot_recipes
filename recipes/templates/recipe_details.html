@@ -1,14 +1,16 @@
 {% extends 'base.html' %} {% block content_site %}
 
 
-<!---------------------------------------------------ECIPE CONTENT -->
+<!---------------------------------------------------RECIPE CONTENT -->
+
+
 <section class='container recipe_content_wrapper'>
     <div class="row">
         
 <!--------------------------------------------------RECIPES DETAILS -->
         <div class='col-md-5 col-lg-5 col-xl-5 recipe_details'>
             <div class='recipe_name col-md-12 col-sm-12 col-lg-12'>
-                <h1 >{{recipe.recipe_name}}</h1>
+                <h2>{{recipe.name}}</h2>
                 <p> Category : {{recipe.recipe_category_name}}</p>
                 <p> Cousine : {{recipe.cousine}}</p>
                 <p> Preparation time : {{recipe.preparation_time}}</p>
@@ -17,11 +19,9 @@
             </div>
 
 <!------------------------------------------------------RECIPES PHOTO  mobile -->
-          
-            
             <div class='row'>
                 <object class='recipe_photo_mobile' data='{{ MEDIA_URL }}{{ recipe.image }}' width='100%' height='auto'>
-                    <img  src="https://bilety.teatrroma.pl/images/layout/no-image.png" width='100%' height='auto' >
+                    <img alt='recipe picture'  src="https://bilety.teatrroma.pl/images/layout/no-image.png" width='100%' height='auto' >
                 </object>
             </div>
             
@@ -35,12 +35,12 @@
         
 <!--------  --------------------------------------------RECIPES INGREDIENTS -->
             <div class='row'>
-                <div class='recipe_ingredients col-md-12'>
+                <div class='col-md-12 col-lg-12 col-xl-12 recipe_details'>
                     <h3><span class="label label-default">Ingredients</span></h3>
                     <div class="row recipe_ingredients">
-                        <div class=" recipe_ingredients col s12">
+                        <div class="recipe_ingredients col s12">
                             <div class=" col s12" >
-                                <table class='align-center' id='ingredients' name="ingredients[]">
+                                <table class='align-center'>
                                     <tr>
                                         <th class='align-center'>Ingredients</th>
                                     </tr>
@@ -80,7 +80,7 @@
                 </div>
             </div> 
             
-<!------    --  --------------------------------------------RECIPES PREPARATION -->
+<!-------------------------------------------------------RECIPES PREPARATION -->
             <div class='row'>
                 <div class='recipe_preparation col-md-12'>
                     <h3><span class="label label-default">Recipe preparation</span></h3>
@@ -99,22 +99,12 @@
             </div>
         </div>
 
-
 <!------------------------------------------------------RECIPES PHOTO -->
         <div class='col-md-7 col-lg-7 col-xl-7 add_recipe_photo_wrapper'>
             <div class='row'>
-                <object class='col-md-12 col-lg-12 col-xl-12 recipe_photo_screens_lg' data="{{ MEDIA_URL }}{{ recipe.image }}" width='100%' height='auto'>
-                    <img  src="https://bilety.teatrroma.pl/images/layout/no-image.png"  width='100%' height='auto' >
+                <object class=' ' data="{{ MEDIA_URL }}{{ recipe.image }}" width='100%' height='370px'>
+                    <img alt='recipe picture' src="https://bilety.teatrroma.pl/images/layout/no-image.png"  width='100%' height='100%' ></img>
                 </object>
-            </div>
-            
-
-<!------------------------------------------------------BON APETITE TEXT -->
-
-            <div class='row bon_apetite'>
-                <div class='col-md-6 col-sm-6 col-lg-6'></div>
-                <h3 class='col-md-5 col-sm-5 col-lg-5'> Bon Apetite !</h3>
-                <div class='col-md-1 col-sm-1 col-lg-1'></div>
             </div>
         </div>
     </div>
@@ -126,8 +116,6 @@
         <div class='col s3 col m5 col l5'></div>
     </div>
 </section>
-
-
 {% include "footer.html" %}
 {% endblock %}
 
