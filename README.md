@@ -140,6 +140,10 @@ user will get money for it. Would like to create section in user's profile to tr
 User is able to reset password. User is redirecting to password reset form and after form validaton user 
 gets email with reseting link.
 
+### Admin recipes review
+It will let Admin review recipes uploaded by users before they will be added to website.
+It could avoid uploading non vegan recipes to website.
+
 # TECHNOLOGIES USED
 
 ```python
@@ -220,7 +224,7 @@ django forms are used to add and update etries in/to DB
 
 # DEPLOYMENT
 
-The project was deployed on Heroku platform under link : 
+The project was deployed on Heroku platform under link : https://vegan-dot-recipes-django.herokuapp.com/
 
 # COMMANDS USED TO DEPLOY PROJECT TO HEROKU:
 
