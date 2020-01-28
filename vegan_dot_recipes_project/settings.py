@@ -33,7 +33,7 @@ SECRET_KEY = [os.environ.get("SECRET_KEY")]
 
 DEBUG = False
 
-ALLOWED_HOSTS = [os.environ.get('C9_HOSTNAME'), '127.0.0.1','vegan-dot-recipes-django.herokuapp.com', 'f995c0db3cd24e759471ec9888ef75ff.vfs.cloud9.us-east-1.amazonaws.com']
+ALLOWED_HOSTS = [os.environ.get('C9_HOSTNAME'), '127.0.0.1','vegan-dot-recipes-django.herokuapp.com', 'f995c0db3cd24e759471ec9888ef75ff.vfs.cloud9.us-east-1.amazonaws.com',]
 
 
 
@@ -93,10 +93,18 @@ WSGI_APPLICATION = 'vegan_dot_recipes_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-
-DATABASES = {'default': dj_database_url.parse("postgres://hggzmfpevmdfxr:69ae18a1cb4ed4782e613897774560d0dd7f3408b31aceb18d350031eafa17d6@ec2-54-217-221-21.eu-west-1.compute.amazonaws.com:5432/dbpleu4v2chskr")}
-
-
+if "DATABASE_URL" in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('postgres://nhmhpwypnfatrs:20d69d437eaac74113555a3c6a05310d3452c86dd2537c61cece3098cc3a0fd4@ec2-54-195-252-243.eu-west-1.compute.amazonaws.com:5432/d66kbauu9kkhih'))
+    }
+else:
+    print("Postgres URL not found, using sqlite instead")
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 
 # Password validation
