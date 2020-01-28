@@ -33,7 +33,7 @@ SECRET_KEY = [os.environ.get("SECRET_KEY")]
 
 DEBUG = False
 
-ALLOWED_HOSTS = [os.environ.get('C9_HOSTNAME'), '127.0.0.1','vegan-dot-recipes-django.herokuapp.com', 'f995c0db3cd24e759471ec9888ef75ff.vfs.cloud9.us-east-1.amazonaws.com',]
+ALLOWED_HOSTS = [os.environ.get('C9_HOSTNAME'), '127.0.0.1','https://vegan-dot-recipes-django.herokuapp.com/', 'f995c0db3cd24e759471ec9888ef75ff.vfs.cloud9.us-east-1.amazonaws.com',]
 
 
 
