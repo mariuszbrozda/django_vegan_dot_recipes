@@ -1,5 +1,5 @@
-{% load staticfiles %}
 
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -121,7 +121,7 @@
 <!----------------------------------------------------HEADER ON LARE SCREENS-->
 <section class='nav-tabs-wrapper'>
     <ul  id="nav-mobile" class=" nav nav-tabs hide-on-med-and-down">
-        {% if user.is_authenticated %}
+        {% if request.user.is_authenticated %}
          <li class="nav-item">
              <a class="nav-link" href="{% url 'home_main' %}"><i class="fa fa-home"></i> Home</a>
          </li>

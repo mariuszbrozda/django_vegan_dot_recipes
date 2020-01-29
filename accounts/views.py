@@ -39,15 +39,14 @@ def logout(request):
 def login(request):
     """Return a login page"""
     if request.user.is_authenticated:
-        return redirect(reverse('home_accounts'))
+        return redirect(reverse('home_main'))
     if request.method == "POST":
         login_form = UserLoginForm(request.POST)
-
         if login_form.is_valid():
             user = auth.authenticate(username=request.POST['username'],
                                     password=request.POST['password'])
             messages.success(request, "You have successfully logged in!")
-
+            
             if user:
                 auth.login(user=user, request=request)
                 return redirect(reverse('home_main'))
@@ -65,7 +64,7 @@ def login(request):
 def registration(request):
     """Render the registration page"""
     if request.user.is_authenticated:
-        return redirect(reverse('index'))
+        return redirect(reverse('home_main'))
 
     if request.method == "POST":
         registration_form = UserRegistrationForm(request.POST)

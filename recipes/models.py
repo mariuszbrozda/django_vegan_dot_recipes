@@ -26,7 +26,7 @@ class Product(models.Model):
     uploaded_by =  models.ForeignKey(User, on_delete=models.CASCADE , default=True)
     name = models.CharField(max_length=54, default='')
     description = models.TextField(max_length=148, default='')
-    price = models.DecimalField( max_digits=6, decimal_places=2)
+    price = models.DecimalField( max_digits=6, decimal_places=2, default=0)
     image = models.ImageField(upload_to='images', blank=True)
     
     recipe_name = models.CharField(max_length=254 , default='')

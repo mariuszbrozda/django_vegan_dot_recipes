@@ -25,15 +25,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = [os.environ.get("SECRET_KEY")]
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [os.environ.get('C9_HOSTNAME'), '127.0.0.1','vegan-dot-recipes-django.herokuapp.com', 'f995c0db3cd24e759471ec9888ef75ff.vfs.cloud9.us-east-1.amazonaws.com',]
+ALLOWED_HOSTS = [os.environ.get('C9_HOSTNAME'),'127.0.0.1:8000', '127.0.0.1','vegan-dot-recipes-django.herokuapp.com', 'f995c0db3cd24e759471ec9888ef75ff.vfs.cloud9.us-east-1.amazonaws.com',]
 
 
 

@@ -49,17 +49,17 @@ After login user can use navigation to find recipes by categories, logout upload
 
 # USER'S STORIES :
 
-```python
+```bash
 As a vegan person I want to find information about vegan recipes so that I can cook my vegan food at home
  -After log in user can search recipes and also share his/her own meals ideas with others.
 ```
 
-```python
+```bash
 As person with intolerance and allergy for some products, I want to make sure that meals I find don't contain harmful for me allergens.
  -Each recipe has list of allergens so users can check what type of allergens are in the meal.
 ```
 
-```python
+```bash
 As a person on diet I want to find information about nutrition facts so I can keep ballance in my diet.
  -All recipes have nutrition info table in which users can check all nutrition facts. For example ammount of proteins in meal.
 ```
@@ -228,6 +228,8 @@ The project was deployed on Heroku platform under link : https://vegan-dot-recip
 
 # COMMANDS USED TO DEPLOY PROJECT TO HEROKU:
 
+
+```python
 git init (create empty repository)
 git add ( to add files)
 git commit -m'' (to commit changes and add message)
@@ -241,6 +243,9 @@ IP = 0.0.0.0
 PORT = 5000
 
 The development and deployed versions are the same.
+
+```
+
 
 # CREDITS
 
