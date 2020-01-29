@@ -34,8 +34,11 @@ class Product(models.Model):
     
     preparation_time = models.CharField(max_length=25, default='')
     recipe_how_to_serve = models.CharField(max_length=354, default='')
-    preparation = models.CharField(max_length=500, default='')
-    
+    preparation_method_1 = models.TextField(max_length=300, default='')
+    preparation_method_2 = models.TextField(max_length=300,blank=True, default='')
+    preparation_method_3 = models.TextField(max_length=300,blank=True, default='')
+    preparation_method_4 = models.TextField(max_length=300,blank=True, default='')
+    preparation_method_5 = models.TextField(max_length=300,blank=True, default='')
     
     ingredient_1 = models.CharField(max_length=54, default='', blank=True)
     ingredient_2 = models.CharField(max_length=54, default='', blank=True)

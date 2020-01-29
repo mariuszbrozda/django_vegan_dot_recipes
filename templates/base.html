@@ -1,5 +1,5 @@
 
-{% load static %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,12 +55,12 @@
         <div  class="nav-wrapper">
             <div>
                <a class='brand-logo' href="{% url 'home_main' %}">
-                   <img  src='/static/img/vd_logo.jpg'></img>
+                   <img alt='logo'  src="{{ MEDIA_URL }}{{'images/vd_logo.jpg' }}"></img>
                </a>
             </div>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="side-nav" id="mobile-demo" >
-                {% if user.is_authenticated %}
+                {% if  user.is_authenticated %}
                 <li class="nav-item">
                      <a class="nav-link-hamburger" href="{% url 'user_profile' %}"><i class="fa fa-user"></i> My profile</a>
                  </li>

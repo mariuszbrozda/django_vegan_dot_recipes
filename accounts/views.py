@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.db import models
 from django.contrib import auth, messages
+from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from accounts.forms import UserLoginForm, UserRegistrationForm
@@ -42,11 +43,12 @@ def login(request):
         return redirect(reverse('home_main'))
     if request.method == "POST":
         login_form = UserLoginForm(request.POST)
+
         if login_form.is_valid():
             user = auth.authenticate(username=request.POST['username'],
                                     password=request.POST['password'])
             messages.success(request, "You have successfully logged in!")
-            
+
             if user:
                 auth.login(user=user, request=request)
                 return redirect(reverse('home_main'))
@@ -55,7 +57,6 @@ def login(request):
     else:
         login_form = UserLoginForm()
     return render(request, 'login.html', {'login_form': login_form})
-    
 ## ---------------registration ----- 
 
 # Function for registration and create user account with password username and email
