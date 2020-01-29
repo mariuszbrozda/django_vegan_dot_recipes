@@ -9,7 +9,7 @@ from django.conf import settings
 
 
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default='')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     profile_description = models.TextField(max_length=400, default='')
     user_city =  models.CharField(max_length=40, default='')
     user_image = models.ImageField(upload_to='images')

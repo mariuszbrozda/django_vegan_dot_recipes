@@ -23,7 +23,7 @@ class Product(models.Model):
     
     recipe_category_name = models.CharField( max_length=20, choices=category_name, default='')
     views = models.IntegerField(default=0)
-    uploaded_by =  models.ForeignKey(User, on_delete=models.CASCADE , default=True)
+    uploaded_by =  models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=54, default='')
     description = models.TextField(max_length=148, default='')
     price = models.DecimalField( max_digits=6, decimal_places=2, default=0)
