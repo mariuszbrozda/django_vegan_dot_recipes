@@ -175,9 +175,10 @@
          {% endif %}
     </ul>
 </section>
-
-
-    {% if messages %}
+    
+    <!-- CONTENT -->
+    <div class="">
+        {% if messages %}
         <div class="alert alert-success mt-5">
             <div class="messages center">
                 {% for message in messages %}
@@ -186,10 +187,8 @@
             </div>
         </div>
     {% endif %}
-    
-    <!-- CONTENT -->
-    <div class="">
         {% block content_site %}
+        
         {% endblock %}
     </div>
     

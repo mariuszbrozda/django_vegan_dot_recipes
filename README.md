@@ -254,4 +254,3 @@ Logo was taken from instagram profile https://www.instagram.com/vegan_dot/?hl=en
 
 
 
-
